@@ -57,9 +57,10 @@ class Fluent::InfluxdbOutput < Fluent::BufferedOutput
             point = {}
             # Data inserted into influxdb should not contains timestamp, so influx insert it own timestamp
             # and timezone (UTC)
-            # point[:timestamp] = record.delete('time') || time
-            point[:timestamp] = record.delete('time') 
-            
+            #point[:timestamp] = record.delete('time') || time
+            # record is a hash
+            point[:timestamp] = nil
+            #point[:timestamp] = record.delete('time')
             point[:series] = tag
 
             if ( tag_keys.empty? && value_keys.empty? )
@@ -72,11 +73,13 @@ class Fluent::InfluxdbOutput < Fluent::BufferedOutput
                 point[:tags] = record.select{|k,v| !@value_keys.include?(k)}
             end
             points << point
+            
         end
         begin
+          #log.warn(points)
           @influxdb.write_points(points)
         rescue Exception => e
-          log.warn("out_influxdb - Exception occurred while trying to send data to influxdb server")
+          log.warn("out_influxdb - Exception occurred while trying to send data to influxdb server #{e}")
           log.debug("out_influxdb - Exception #{e}")
         end
     end
