@@ -356,15 +356,15 @@ def test_start_tcpreplay_container():
     assert c.inspect_container(TCP_REPLAY_NAME)["State"]["Running"]
 
 
-def test_jti_agent():
-    db = get_handle_db()
+#def test_jti_agent():
+#    db = get_handle_db()
 
-    query = 'SELECT "value" FROM "jnpr.jvision" WHERE  ' + \
-        '"type" = \'egress_stats.if_pkts\';'
-    result = db.query(query)
-    points = list(result.get_points())
+#    query = 'SELECT "value" FROM "jnpr.jvision" WHERE  ' + \
+#        '"type" = \'egress_stats.if_pkts\';'
+#    result = db.query(query)
+#    points = list(result.get_points())
 
-    assert len(points) >= 1
+#    assert len(points) >= 1
 
 
 def test_grafana_running():
