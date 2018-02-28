@@ -280,23 +280,23 @@ def test_input_jti_running():
 
     assert status == 'running'
 
-def test_jti_structured_ifd_01():
+#def test_jti_structured_ifd_01():
 
-    FNAME       = sys._getframe().f_code.co_name
-    PCAP_FILE   = FNAME + "/jti.pcap"
+#    FNAME       = sys._getframe().f_code.co_name
+#    PCAP_FILE   = FNAME + "/jti.pcap"
 
-    start_fluentd(output_influx='true')
-    replay_file(PCAP_FILE)
+#    start_fluentd(output_influx='true')
+#    replay_file(PCAP_FILE)
 
-    time.sleep(3)
+#    time.sleep(3)
 
-    db = get_influxdb_handle()
-    query = 'SELECT * FROM "jnpr.jvision"'
-    result = db.query(query)
-    points = result.get_points()
-    print result
-    print points
-    assert len(list(points)) == 112
+#    db = get_influxdb_handle()
+#    query = 'SELECT * FROM "jnpr.jvision"'
+#    result = db.query(query)
+#    points = result.get_points()
+#    print result
+#    print points
+#    assert len(list(points)) == 112
 
 # def test_analyticsd_structured_ifd_01():
 #     CONFIG_FILE = 'fluent_structured.conf'
